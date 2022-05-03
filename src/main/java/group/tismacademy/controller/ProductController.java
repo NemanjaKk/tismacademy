@@ -2,6 +2,7 @@ package group.tismacademy.controller;
 
 import group.tismacademy.entity.Category;
 import group.tismacademy.entity.Product;
+import group.tismacademy.request.StoreProductRequest;
 import group.tismacademy.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,9 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    @PostMapping("/products/category/{category}")
-    public Product addProduct(@PathVariable Category category, @RequestBody Product product) {
-        return service.saveProduct(product, category);
+    @PostMapping("/products")
+    public Product addProduct(@RequestBody StoreProductRequest request) {
+        return service.saveProduct(request);
     }
 
     @PostMapping("/products/many")

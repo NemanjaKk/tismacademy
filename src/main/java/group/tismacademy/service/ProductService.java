@@ -1,8 +1,9 @@
 package group.tismacademy.service;
 
-import group.tismacademy.entity.Category;
 import group.tismacademy.entity.Product;
+import group.tismacademy.repository.CategoryRepository;
 import group.tismacademy.repository.ProductRepository;
+import group.tismacademy.request.StoreProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,12 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
-    public Product saveProduct(Product product, Category category){
-        product.setCategory(category);
+    public Product saveProduct(StoreProductRequest request){
+        Product product = new Product(request.name, request.quantity, request.price);
+        product.setCategory(categoryRepository.getById(request.category));
         return productRepository.save(product);
     }
 

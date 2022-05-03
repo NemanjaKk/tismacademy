@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,4 +26,10 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     @JsonIgnoreProperties("products")
     private Category category;
+
+    public Product(String name, int quantity, double price) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
 }
