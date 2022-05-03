@@ -1,5 +1,6 @@
 package group.tismacademy.request;
 
+import group.tismacademy.annotation.CategoryExistsValidation;
 import lombok.Data;
 
 import javax.validation.constraints.*;
@@ -20,5 +21,6 @@ public class StoreProductRequest {
 
     @NotNull(message = "Category required")
     @Min(value = 1, message = "Category required")
+    @CategoryExistsValidation
     private int category;
 }
