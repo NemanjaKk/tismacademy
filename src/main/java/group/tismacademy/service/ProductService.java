@@ -18,8 +18,8 @@ public class ProductService {
     private CategoryRepository categoryRepository;
 
     public Product saveProduct(StoreProductRequest request){
-        Product product = new Product(request.name, request.quantity, request.price);
-        product.setCategory(categoryRepository.getById(request.category));
+        Product product = new Product(request.getName(), request.getQuantity(), request.getPrice());
+        product.setCategory(categoryRepository.getById(request.getCategory()));
         return productRepository.save(product);
     }
 

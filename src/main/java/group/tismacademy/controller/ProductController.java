@@ -1,12 +1,12 @@
 package group.tismacademy.controller;
 
-import group.tismacademy.entity.Category;
 import group.tismacademy.entity.Product;
 import group.tismacademy.request.StoreProductRequest;
 import group.tismacademy.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +16,7 @@ public class ProductController {
     private ProductService service;
 
     @PostMapping("/products")
-    public Product addProduct(@RequestBody StoreProductRequest request) {
+    public Product addProduct(@Valid @RequestBody StoreProductRequest request) {
         return service.saveProduct(request);
     }
 
